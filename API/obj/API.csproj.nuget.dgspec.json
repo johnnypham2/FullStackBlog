@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Flame\\Desktop\\FullStackBlog\\API\\API.csproj": {}
+    "C:\\Users\\Flame\\Desktop\\Lvl 4\\FullStackBlog\\api\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Flame\\Desktop\\FullStackBlog\\API\\API.csproj": {
+    "C:\\Users\\Flame\\Desktop\\Lvl 4\\FullStackBlog\\api\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Flame\\Desktop\\FullStackBlog\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\Flame\\Desktop\\Lvl 4\\FullStackBlog\\api\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\Flame\\Desktop\\FullStackBlog\\API\\API.csproj",
+        "projectPath": "C:\\Users\\Flame\\Desktop\\Lvl 4\\FullStackBlog\\api\\API.csproj",
         "packagesPath": "C:\\Users\\Flame\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Flame\\Desktop\\FullStackBlog\\API\\obj\\",
+        "outputPath": "C:\\Users\\Flame\\Desktop\\Lvl 4\\FullStackBlog\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Flame\\AppData\\Roaming\\NuGet\\NuGet.Config"

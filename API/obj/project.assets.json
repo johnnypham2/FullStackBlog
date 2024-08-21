@@ -4529,11 +4529,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Flame\\Desktop\\FullStackBlog\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\Flame\\Desktop\\Lvl 4\\FullStackBlog\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\Flame\\Desktop\\FullStackBlog\\API\\API.csproj",
+      "projectPath": "C:\\Users\\Flame\\Desktop\\Lvl 4\\FullStackBlog\\API\\API.csproj",
       "packagesPath": "C:\\Users\\Flame\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Flame\\Desktop\\FullStackBlog\\API\\obj\\",
+      "outputPath": "C:\\Users\\Flame\\Desktop\\Lvl 4\\FullStackBlog\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Flame\\AppData\\Roaming\\NuGet\\NuGet.Config"
