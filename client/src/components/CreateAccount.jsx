@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { Col, Container, Row, Button, Form } from "react-bootstrap";
+import { createAccount } from "../Services/DataService";
+import { useNavigate } from "react-router-dom";
 useState
 
 const CreateAccount = () => {
+
+  let navigate = useNavigate();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -22,7 +26,10 @@ const CreateAccount = () => {
         let userData = {
             username : username,
             password : password
+            
         }
+        createAccount(userData)
+        navigate("/Login");
         console.log(userData);
     }
 

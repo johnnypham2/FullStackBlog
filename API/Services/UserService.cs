@@ -139,9 +139,14 @@ public bool verifyUserPassword(string? Password, string? StoredHash, string? Sto
             return Result;
         }
 
-        internal UserIdDTO GetUserIdDTOByUserName(string username)
+        public UserIdDTO GetUserIdDTOByUserName(string username)
         {
-            throw new NotImplementedException();
+           var UserInfo = new UserIdDTO();
+           var foundUser = _context.UsersInfo.SingleOrDefault(user => user.Username == username);
+           UserInfo.UserId = foundUser.Id;
+           UserInfo.PublisherName = foundUser.Username;
+
+           return UserInfo;
         }
 
         public UserModel GetUserByUserName(string? username)

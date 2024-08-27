@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { Col, Container, Row, Button, Form } from "react-bootstrap";
 useState
+import { useNavigate } from "react-router-dom"
+import { GetLoggedInUser, login } from "../Services/DataService";
 
-const Login = () => {
+const Login = ({onLogin}) => {
+
+  let navigate = useNavigate();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -18,12 +22,21 @@ const Login = () => {
     }
 
     //function to handle our submit
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         let userData = {
             username : username,
             password : password
         }
         console.log(userData);
+        onLogin(userData)
+        let token = await login(userData);
+        console.log(token.token)
+        if(token.token != null)
+        {
+          localStorage.setItem("Token",token.token)
+          GetLoggedInUser(username)
+          navigate("/Dashboard")
+        }
     }
 
   return (
@@ -47,7 +60,7 @@ const Login = () => {
                 Login
               </Button>
               <p className="mt-3">Don't have an account?</p>
-              <Button variant="outline-primary" onClick={handleSubmit}>
+              <Button variant="outline-primary" onClick={() => navigate("/CreateAccount")}>
                 Create Account
               </Button>
             </Form>
