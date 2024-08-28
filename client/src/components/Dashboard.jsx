@@ -10,7 +10,9 @@ import {
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
+  AddBlogItems,
   checkToken,
+  GetItemsByUserId,
   GetLoggedInUser,
   LoggedInData,
 } from "../Services/DataService";
@@ -27,55 +29,9 @@ const Dashboard = ({ isDarkMode }) => {
   const [userId, setUserId] = useState(0);
   const [publisherName, setPublisherName] = useState("");
 
-  const [blogItems, setBlogItems] = useState([
-    {
-      Id: 1,
-      Title: "Top Finishing and Crossing Drills",
-      Publisher: "anonymous",
-      Date: "01-13-2022",
-      Text: "Developing finishing and crossing skills is an important aspect of soccer that can greatly contribute to your player.",
-      Image: "./assets/Images/3soccerballs.jpg",
-      Published: true,
-    },
-    {
-      Id: 2,
-      Title: "6 Soccer Drills to Work on Defense",
-      Publisher: "anonymous",
-      Date: "01-14-2022",
-      Text: "A strong defense is the backbone of any successful soccer team",
-      Image: "./assets/Images/3soccerballs.jpg",
-      Published: true,
-    },
-    {
-      Id: 3,
-      Title: "5 Small Side Games",
-      Publisher: "anonymous",
-      Date: "01-15-2022",
-      Text: "Small-sided games create a fast-paced and intense environment.",
-      Image: "./assets/Images/3soccerballs.jpg",
-      Published: true,
-    },
-    {
-      Id: 4,
-      Title: "5 Fun 1 V 1 Youth Soccer Activities",
-      Publisher: "anonymous",
-      Date: "01-15-2022",
-      Text: "One of the best ways to naturally bring out the competitive nature.",
-      Image: "./assets/Images/3soccerballs.jpg",
-      Published: false,
-    },
-    {
-      Id: 5,
-      Title: "5 Fun warm-up soccer drills",
-      Publisher: "anonymous",
-      Date: "01-15-2022",
-      Text: "One of the challenges for youth soccer coaches is to make sure their players are always excited to come to practice.",
-      Image: "./assets/Images/3soccerballs.jpg",
-      Published: false,
-    },
-  ]);
+  const [blogItems, setBlogItems] = useState([]);
 
-  const handleSaveWithPublished = () => {
+  const handleSaveWithPublished = async () => {
     let { publisherName, userId } = LoggedInData();
     const published = {
       Id: 0,
@@ -91,6 +47,14 @@ const Dashboard = ({ isDarkMode }) => {
       isDeleted: false,
     };
     console.log("Saving with publish:", published); 
+    handleClose();
+    let result = await AddBlogItems(published);
+    if(result)
+    {
+      let userBlogItems = await GetItemsByUserId(userId)
+      setBlogItems(userBlogItems);
+      console.log(userBlogItems, "this is from our UserBlogItems");
+    }
     
   };
   
@@ -245,10 +209,10 @@ const Dashboard = ({ isDarkMode }) => {
             <Button variant="secondary" onClick={handleClose}>
               Cancel
             </Button>
-            <Button variant="primary" onClick={handleSaveWithPublished}>
+            <Button variant="primary" onClick={handleSaveWithUnPublished}>
               {edit ? "Save Changes" : "Save"}
             </Button>
-            <Button variant="primary" onClick={handleSaveWithUnPublished}>
+            <Button variant="primary" onClick={handleSaveWithPublished}>
               {edit ? "Save Changes" : "Save"} and Publish
             </Button>
           </Modal.Footer>
@@ -259,10 +223,10 @@ const Dashboard = ({ isDarkMode }) => {
             <Accordion.Header>Accordion Item #1</Accordion.Header>
             <Accordion.Body>
               {blogItems.map(
-                (item) =>
-                  item.Published && (
-                    <ListGroup key={item.Id}>
-                      {item.Title}
+                (item, i) =>
+                  item.isPublished && (
+                    <ListGroup key={i}>
+                      {item.title}
                       <Col className="d-flex justify-content-end mx-2">
                         <Button variant="outline-danger mx-2">Delete</Button>
                         <Button variant="outline-info mx-2">Edit</Button>
@@ -277,10 +241,10 @@ const Dashboard = ({ isDarkMode }) => {
             <Accordion.Header>Accordion Item #2</Accordion.Header>
             <Accordion.Body>
               {blogItems.map(
-                (item) =>
-                  !item.Published && (
-                    <ListGroup key={item.Id}>
-                      {item.Title}
+                (item, i) =>
+                  !item.isPublished && (
+                    <ListGroup key={i}>
+                      {item.title}
                       <Col className="d-flex justify-content-end mx-2">
                         <Button variant="outline-danger mx-2">Delete</Button>
                         <Button variant="outline-info mx-2">Edit</Button>

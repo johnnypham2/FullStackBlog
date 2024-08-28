@@ -5,7 +5,7 @@ import { IoSunnyOutline } from "react-icons/io5";
 import Moon from "../assets/moon.jpg";
 import { Link } from "react-router-dom";
 
-const NavBar = ({ isDarkMode, toggleDarkMode }) => {
+const NavBar = ({ isDarkMode, toggleDarkMode, user }) => {
   return (
     <>
       <Navbar
@@ -46,7 +46,7 @@ const NavBar = ({ isDarkMode, toggleDarkMode }) => {
               </Nav.Link>
 
 
-              <Nav.Link>Welcome Johnny</Nav.Link>
+              <Nav.Link>Welcome {user ? user.Username : "Guest"}</Nav.Link>
               <Nav.Link eventKey={2} href="#memes">
                 <Image className="profilepic" src={Moon} roundedCircle />
               </Nav.Link>

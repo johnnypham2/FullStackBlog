@@ -71,5 +71,12 @@ namespace API.Controllers
             return _data.GetPublishedItems();
         }
 
+        [HttpGet("GetItemsByUserId/{UserId}")]
+
+        public IEnumerable<BlogItemModel> GetItemsByUserId (int UserId)
+        {
+            return _data.GetItemsByUserId(UserId);
+        }
     }
+
 }
